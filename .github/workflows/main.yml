@@ -31,10 +31,10 @@ jobs:
         mkdir -p logs data/raw data/processed data/validation
     - name: Run Data Ingestion Test
       run: |
-        python src/improved_ingest_data.py
+        python src/ingest_data.py
     - name: Run Data Splitting Test
       run: |
-        python src/improved_data_splitter.py
+        python src/data_splitter.py
     - name: Test with pytest
       run: |
         pytest
@@ -63,7 +63,7 @@ jobs:
         mkdir -p logs data/raw data/processed data/validation
     - name: Run MLOps Pipeline - Data Ingestion
       run: |
-        python run_improved_pipeline.py --phase 1
+        python pipeline.py --phase 1
     - name: Run MLOps Pipeline - Data Splitting
       run: |
-        python run_improved_pipeline.py --phase 2
+        python pipeline.py --phase 2

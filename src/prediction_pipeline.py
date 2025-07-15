@@ -429,7 +429,7 @@ class PredictionMonitor:
             'explanation_coverage': sum(1 for log in recent_logs if log['has_explanations']) / len(recent_logs)
         }
 
-class ImprovedPredictionPipeline:
+class PredictionPipeline:
     """Improved prediction pipeline with comprehensive capabilities"""
     
     def __init__(self, config_path: str = "config/main_config.yaml"):

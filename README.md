@@ -56,20 +56,20 @@ The pipeline is built on a modular, scalable architecture designed for enterpris
 ML-Ops-AD/
 ├── README.md                          # This file
 ├── requirements.txt                   # Python dependencies
-├── run_improved_pipeline.py          # Main pipeline orchestrator
+├── pipeline.py                       # Main pipeline orchestrator
 ├── config/                           # Configuration files
 │   ├── main_config.yaml             # Main configuration
 │   └── test_config.yaml             # Test configuration
 ├── src/                              # Source code
-│   ├── improved_ingest_data.py       # Phase 1: Data ingestion
-│   ├── improved_data_splitter.py     # Phase 2: Data splitting
-│   ├── improved_feature_engineering.py # Phase 3: Feature engineering
-│   ├── improved_model_training.py    # Phase 4: Model training
-│   ├── improved_hyperparameter_tuning.py # Phase 5: Hyperparameter tuning
-│   ├── improved_prediction_pipeline.py # Phase 6: Prediction pipeline
-│   ├── improved_model_validation.py  # Phase 7: Model validation
-│   ├── improved_model_monitoring.py  # Phase 8: Model monitoring
-│   ├── improved_model_deployment.py  # Phase 9: Model deployment
+│   ├── ingest_data.py                # Phase 1: Data ingestion
+│   ├── data_splitter.py              # Phase 2: Data splitting
+│   ├── feature_engineering.py        # Phase 3: Feature engineering
+│   ├── model_training.py             # Phase 4: Model training
+│   ├── hyperparameter_tuning.py      # Phase 5: Hyperparameter tuning
+│   ├── prediction_pipeline.py        # Phase 6: Prediction pipeline
+│   ├── model_validation.py           # Phase 7: Model validation
+│   ├── model_monitoring.py           # Phase 8: Model monitoring
+│   ├── model_deployment.py           # Phase 9: Model deployment
 │   └── phase_validation_suite.py     # Validation framework
 ├── data/                             # Data storage
 │   ├── raw/                          # Raw data from sources
@@ -172,25 +172,25 @@ ML-Ops-AD/
 #### Full Pipeline Execution
 ```bash
 # Run all phases with validation
-python run_improved_pipeline.py --phase all --validate
+python pipeline.py --phase all --validate
 
 # Run specific phase
-python run_improved_pipeline.py --phase 4
+python pipeline.py --phase 4
 
 # Force re-run with validation and testing
-python run_improved_pipeline.py --phase all --validate --test --force
+python pipeline.py --phase all --validate --test --force
 ```
 
 #### Individual Phase Execution
 ```bash
 # Data ingestion
-python run_improved_pipeline.py --phase 1
+python pipeline.py --phase 1
 
 # Model training
-python run_improved_pipeline.py --phase 4
+python pipeline.py --phase 4
 
 # Deployment
-python run_improved_pipeline.py --phase 9
+python pipeline.py --phase 9
 ```
 
 ## Configuration
@@ -295,10 +295,10 @@ python -m pytest tests/test_data_processing.py -v
 ### Integration Tests
 ```bash
 # Run pipeline validation
-python run_improved_pipeline.py --validate
+python pipeline.py --validate
 
 # Run comprehensive tests
-python run_improved_pipeline.py --test
+python pipeline.py --test
 ```
 
 ## Deployment
@@ -313,7 +313,7 @@ docker run -p 8000:8000 mlops-pipeline
 ### Production Deployment
 ```bash
 # Deploy to production
-python run_improved_pipeline.py --phase 9
+python pipeline.py --phase 9
 ```
 
 ### Kubernetes Deployment
@@ -345,7 +345,7 @@ kubectl apply -f k8s/
 ```bash
 # Enable debug logging
 export LOG_LEVEL=DEBUG
-python run_improved_pipeline.py --phase all --validate
+python pipeline.py --phase all --validate
 ```
 
 ## Contributing

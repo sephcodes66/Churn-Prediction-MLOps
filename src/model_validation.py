@@ -431,7 +431,7 @@ class ConfidenceIntervalValidator(BaseValidator):
         else:
             return pickle.loads(pickle.dumps(model))
 
-class ImprovedModelValidator:
+class ModelValidator:
     """Comprehensive model validation framework"""
     
     def __init__(self, config_path: str = "config/main_config.yaml"):

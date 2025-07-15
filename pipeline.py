@@ -38,16 +38,16 @@ from pathlib import Path
 # Add src to path
 sys.path.append(str(Path(__file__).parent / "src"))
 
-# Import improved modules
-from improved_ingest_data import ImprovedDataIngestor
-from improved_data_splitter import TimeSerisSplitter
-from improved_feature_engineering import ImprovedFeatureEngineer
-from improved_model_training import ImprovedModelTrainer
-from improved_hyperparameter_tuning import ImprovedHyperparameterTuner
-from improved_prediction_pipeline import ImprovedPredictionPipeline
-from improved_model_validation import ImprovedModelValidator
-from improved_model_monitoring import ImprovedModelMonitor
-from improved_model_deployment import ImprovedModelDeployer
+# Import modules
+from ingest_data import DataIngestor
+from data_splitter import TimeSerisSplitter
+from feature_engineering import FeatureEngineer
+from model_training import ModelTrainer
+from hyperparameter_tuning import HyperparameterTuner
+from prediction_pipeline import PredictionPipeline
+from model_validation import ModelValidator
+from model_monitoring import ModelMonitor
+from model_deployment import ModelDeployer
 from phase_validation_suite import MLOpsPipelineValidator
 import pandas as pd
 import numpy as np
@@ -63,7 +63,7 @@ logging.basicConfig(
 )
 logger = logging.getLogger(__name__)
 
-class ImprovedPipelineRunner:
+class PipelineRunner:
     """Enterprise-grade MLOps pipeline orchestrator.
     
     Production-ready pipeline management system with comprehensive validation,
@@ -93,7 +93,7 @@ class ImprovedPipelineRunner:
             return True
             
         try:
-            ingestor = ImprovedDataIngestor()
+            ingestor = DataIngestor()
             success = ingestor.run_ingestion()
             
             if success:
@@ -174,7 +174,7 @@ class ImprovedPipelineRunner:
             return True
             
         try:
-            fe = ImprovedFeatureEngineer()
+            fe = FeatureEngineer()
             
             # Load and process training data
             train_df = pd.read_csv("data/processed/train.csv")
@@ -227,7 +227,7 @@ class ImprovedPipelineRunner:
             return True
             
         try:
-            trainer = ImprovedModelTrainer()
+            trainer = ModelTrainer()
             results = trainer.train_and_evaluate_models()
             
             logger.info("✅ Phase 4 completed successfully")
@@ -263,7 +263,7 @@ class ImprovedPipelineRunner:
             return True
             
         try:
-            tuner = ImprovedHyperparameterTuner()
+            tuner = HyperparameterTuner()
             results = tuner.run_advanced_tuning()
             
             logger.info("✅ Phase 5 completed successfully")
@@ -293,7 +293,7 @@ class ImprovedPipelineRunner:
         logger.info("=" * 60)
         
         try:
-            predictor = ImprovedPredictionPipeline()
+            predictor = PredictionPipeline()
             
             # Test prediction pipeline with sample data
             sample_data = pd.DataFrame({
@@ -339,7 +339,7 @@ class ImprovedPipelineRunner:
         logger.info("=" * 60)
         
         try:
-            validator = ImprovedModelValidator()
+            validator = ModelValidator()
             report = validator.run_comprehensive_validation()
             
             success = report.overall_score > 50  # Minimum acceptable score
@@ -378,7 +378,7 @@ class ImprovedPipelineRunner:
         logger.info("=" * 60)
         
         try:
-            monitor = ImprovedModelMonitor()
+            monitor = ModelMonitor()
             
             # Load test data for monitoring
             test_data = pd.read_csv("data/processed/test_processed.csv")
@@ -422,7 +422,7 @@ class ImprovedPipelineRunner:
         logger.info("=" * 60)
         
         try:
-            deployer = ImprovedModelDeployer()
+            deployer = ModelDeployer()
             
             # Deploy to development environment
             success = deployer.deploy_model(environment="dev", strategy="docker")
@@ -634,7 +634,7 @@ def main():
             sys.exit(1)
     
     # Run pipeline
-    runner = ImprovedPipelineRunner()
+    runner = PipelineRunner()
     runner.run_pipeline(
         phases=phases,
         validate=args.validate,

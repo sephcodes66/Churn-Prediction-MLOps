@@ -282,7 +282,7 @@ class DomainFeatureEngineer:
         self.feature_names.extend(temporal_features)
         return df
 
-class ImprovedFeatureEngineer:
+class FeatureEngineer:
     """Production-ready feature engineering pipeline for ML systems.
     
     Enterprise-grade feature engineering system designed for scalability,
@@ -662,7 +662,7 @@ class ImprovedFeatureEngineer:
 def main():
     """Main function to test feature engineering"""
     # This would typically be called from other modules
-    fe = ImprovedFeatureEngineer()
+    fe = FeatureEngineer()
     
     # Example usage (would load actual data)
     logger.info("Feature engineering module loaded successfully")

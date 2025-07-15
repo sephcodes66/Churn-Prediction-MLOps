@@ -792,7 +792,7 @@ class ModelAPI:
             logger.error(f"Preprocessing failed: {e}")
             raise
 
-class ImprovedModelDeployer:
+class ModelDeployer:
     """Comprehensive model deployment orchestrator"""
     
     def __init__(self, config_path: str = "config/main_config.yaml"):

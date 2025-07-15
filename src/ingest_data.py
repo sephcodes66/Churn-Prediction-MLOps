@@ -198,7 +198,7 @@ class DataValidator:
         return (missing_score + duplicate_score + consistency_score) / 3
 
 
-class ImprovedDataIngestor:
+class DataIngestor:
     """Improved data ingestion with comprehensive validation"""
     
     def __init__(self, config_path: str = "config/main_config.yaml"):
@@ -433,7 +433,7 @@ class ImprovedDataIngestor:
 
 def main():
     """Main function to run improved data ingestion"""
-    ingestor = ImprovedDataIngestor()
+    ingestor = DataIngestor()
     success = ingestor.run_ingestion()
     
     if not success:

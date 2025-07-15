@@ -314,7 +314,7 @@ class MultiObjectiveOptimizer:
             'weighted_score': best_score
         }
 
-class ImprovedHyperparameterTuner:
+class HyperparameterTuner:
     """Improved hyperparameter tuning with advanced strategies"""
     
     def __init__(self, config_path: str = "config/main_config.yaml"):

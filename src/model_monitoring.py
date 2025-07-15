@@ -543,7 +543,7 @@ class AlertManager:
         # Implementation would depend on Slack configuration
         pass
 
-class ImprovedModelMonitor:
+class ModelMonitor:
     """Comprehensive model monitoring system"""
     
     def __init__(self, config_path: str = "config/main_config.yaml"):

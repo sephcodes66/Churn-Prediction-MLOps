@@ -1,13 +1,13 @@
 
 import os
 import pandas as pd
-from src.improved_feature_engineering import ImprovedFeatureEngineer
-from run_improved_pipeline import ImprovedPipelineRunner
+from src.feature_engineering import FeatureEngineer
+from pipeline import PipelineRunner
 import sqlite3
 
 def test_feature_engineering():
     """
-    Tests the ImprovedFeatureEngineer with a dummy DataFrame.
+    Tests the FeatureEngineer with a dummy DataFrame.
     """
     # --- 1. Setup ---
     output_dir = "data/processed"
@@ -49,7 +49,7 @@ def test_feature_engineering():
 
     # --- 2. Execution ---
     try:
-        fe = ImprovedFeatureEngineer()
+        fe = FeatureEngineer()
         processed_df, target = fe.run_feature_engineering(dummy_df.copy(), is_training=True)
 
         # --- 3. Assertion ---
@@ -60,7 +60,7 @@ def test_feature_engineering():
     except Exception as e:
         # If feature engineering fails, that's expected with minimal data
         # Just check that the class can be instantiated
-        assert fe is not None, "Could not instantiate ImprovedFeatureEngineer"
+        assert fe is not None, "Could not instantiate FeatureEngineer"
         
     # --- 4. Teardown ---
     # Clean up any created files
@@ -73,7 +73,7 @@ def test_feature_engineering():
 
 def test_pipeline_runner():
     """
-    Tests the ImprovedPipelineRunner instantiation.
+    Tests the PipelineRunner instantiation.
     """
     # --- 1. Setup ---
     # Create required directories
@@ -83,8 +83,8 @@ def test_pipeline_runner():
 
     # --- 2. Execution ---
     try:
-        runner = ImprovedPipelineRunner()
-        assert runner is not None, "Could not instantiate ImprovedPipelineRunner"
+        runner = PipelineRunner()
+        assert runner is not None, "Could not instantiate PipelineRunner"
         
         # Test that the runner has the expected attributes
         assert hasattr(runner, 'pipeline_results'), "Runner missing pipeline_results attribute"

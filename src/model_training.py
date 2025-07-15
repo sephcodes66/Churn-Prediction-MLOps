@@ -484,7 +484,7 @@ class ModelEvaluator:
         except Exception:
             return 0.0
 
-class ImprovedModelTrainer:
+class ModelTrainer:
     """Improved model training with comprehensive validation"""
     
     def __init__(self, config_path: str = "config/main_config.yaml"):
