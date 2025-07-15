@@ -49,6 +49,7 @@ from model_validation import ModelValidator
 from model_monitoring import ModelMonitor
 from model_deployment import ModelDeployer
 from phase_validation_suite import MLOpsPipelineValidator
+from pipeline_visualizer import PipelineVisualizer
 import pandas as pd
 import numpy as np
 
@@ -80,6 +81,7 @@ class PipelineRunner:
     def __init__(self):
         self.pipeline_results = {}
         self.start_time = datetime.now()
+        self.visualizer = PipelineVisualizer()
         
     def run_phase_1(self, force: bool = False) -> bool:
         """Run Phase 1: Data Ingestion"""
@@ -103,6 +105,8 @@ class PipelineRunner:
                     'timestamp': datetime.now().isoformat(),
                     'outputs': ['turbofan.sqlite', 'data/validation/ingestion_validation.json']
                 }
+                # Generate visualizations
+                self.visualizer.phase_1_data_ingestion()
             else:
                 logger.error("❌ Phase 1 failed")
                 self.pipeline_results['phase1'] = {
@@ -144,6 +148,8 @@ class PipelineRunner:
                     'timestamp': datetime.now().isoformat(),
                     'outputs': split_files + ['data/validation/split_report.json']
                 }
+                # Generate visualizations
+                self.visualizer.phase_2_data_splitting()
             else:
                 logger.error("❌ Phase 2 failed")
                 self.pipeline_results['phase2'] = {
@@ -204,6 +210,8 @@ class PipelineRunner:
                     'data/processed/selected_features.json'
                 ]
             }
+            # Generate visualizations
+            self.visualizer.phase_3_feature_engineering()
             return True
             
         except Exception as e:
@@ -240,6 +248,8 @@ class PipelineRunner:
                 ],
                 'metrics': results['evaluation_results']['val_metrics']
             }
+            # Generate visualizations
+            self.visualizer.phase_4_model_training()
             return True
             
         except Exception as e:
@@ -275,6 +285,8 @@ class PipelineRunner:
                     'data/tuning/tuning_results.json'
                 ]
             }
+            # Generate visualizations
+            self.visualizer.phase_5_hyperparameter_tuning()
             return True
             
         except Exception as e:
@@ -314,6 +326,8 @@ class PipelineRunner:
                     'timestamp': datetime.now().isoformat(),
                     'outputs': ['Prediction pipeline initialized and tested']
                 }
+                # Generate visualizations
+                self.visualizer.phase_6_prediction_pipeline()
             else:
                 logger.error("❌ Phase 6 failed")
                 self.pipeline_results['phase6'] = {
@@ -352,6 +366,8 @@ class PipelineRunner:
                     'outputs': ['data/validation/validation_report.json'],
                     'validation_score': report.overall_score
                 }
+                # Generate visualizations
+                self.visualizer.phase_7_model_validation()
             else:
                 logger.error("❌ Phase 7 failed")
                 self.pipeline_results['phase7'] = {
@@ -396,6 +412,8 @@ class PipelineRunner:
                     'outputs': ['data/monitoring/latest_metrics.json'],
                     'health_score': metrics.model_health_score
                 }
+                # Generate visualizations
+                self.visualizer.phase_8_model_monitoring()
             else:
                 logger.error("❌ Phase 8 failed")
                 self.pipeline_results['phase8'] = {
@@ -439,6 +457,8 @@ class PipelineRunner:
                     'outputs': ['Model deployed to development environment'],
                     'deployment_status': health.status
                 }
+                # Generate visualizations
+                self.visualizer.phase_9_model_deployment()
             else:
                 logger.error("❌ Phase 9 failed")
                 self.pipeline_results['phase9'] = {
@@ -607,6 +627,9 @@ class PipelineRunner:
                 logger.info(f"   Metrics: R²={metrics.get('r2', 'N/A'):.3f}, RMSE={metrics.get('rmse', 'N/A'):.3f}")
         
         logger.info("=" * 60)
+        
+        # Generate comprehensive pipeline summary visualization
+        self.visualizer.generate_pipeline_summary()
 
 def main():
     """Main function with argument parsing"""
