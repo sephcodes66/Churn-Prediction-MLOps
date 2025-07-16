@@ -126,6 +126,7 @@ cython_debug/
 
 # Editor-specific files
 .vscode/
+.claude/
 
 # macOS-specific files
 .DS_Store
@@ -133,6 +134,10 @@ cython_debug/
 # MLflow
 mlruns/
 mlflow-artifacts/
+
+# Logs & Outputs
+logs/
+outputs/
 
 # Data
 data/processed/
