@@ -1,0 +1,42 @@
+# Environments
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Test and coverage reports
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Build and distribution artifacts
+build/
+dist/
+*.egg-info/
+
+# Logs and outputs
+logs/
+outputs/
+mlruns/
+
+# Data files - untracked to keep the repository lightweight
+data/
+*.sqlite
+
+# Editor and OS-specific files
+.vscode/
+.idea/
+.DS_Store
+
+# Documentation files (excluding the main README.md)
+docs/**/*.md
+!README.md

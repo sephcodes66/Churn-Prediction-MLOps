@@ -1,0 +1,46 @@
+
+# Configuration for the MLOps Predictive Maintenance Project
+
+# --- Data Parameters ---
+data:
+  processed_data_dir: "data/processed"
+  feature_path: "data/processed/turbofan_features.csv"
+  target_column: "RUL"
+  test_size: 0.2
+  val_size: 0.15 # Added validation set size
+  random_state: 42
+  database_path: "turbofan.sqlite"
+
+# --- Model Parameters ---
+model:
+  name: "predictive_maintenance_model"
+  params:
+    objective: "reg:squarederror"
+    eval_metric: "rmse"
+    n_estimators: 100
+    learning_rate: 0.1
+    max_depth: 6
+    subsample: 0.8
+    colsample_bytree: 0.8
+
+# --- Hyperparameter Tuning Parameters ---
+tuning:
+  n_trials: 50
+  objective_metric: "rmse"
+  direction: "minimize"
+  sampler: "tpe"
+  pruner: "median"
+
+# --- MLflow Parameters ---
+mlflow:
+  experiment_name: "Predictive Maintenance"
+  registry_uri: "databricks-uc"
+
+# --- Visualization Parameters ---
+visualization:
+  output_dir: "visualizations"
+
+# --- Monitoring Parameters ---
+monitoring:
+  drift_threshold: 0.25
+  r2_threshold: 0.7
