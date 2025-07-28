@@ -7,12 +7,13 @@
 
 This repository contains a production-ready MLOps pipeline for predicting the Remaining Useful Life (RUL) of turbofan engines. It transforms raw sensor data into actionable maintenance insights using a modular, scalable, and automated system.
 
-![Dashboard Screenshot](./docs/visualisations/phase2_data_distribution.png)
-![Dashboard Screenshot](./docs/visualisations/phase3_feature_engineering.png)
-![Dashboard Screenshot](./docs/visualisations/phase4_hyperparameter_tuning.png)
-![Dashboard Screenshot](./docs/visualisations/phase5_prediction_results.png)
-![Dashboard Screenshot](./docs/visualisations/phase6_model_performance.png)
-![Dashboard Screenshot](./docs/visualisations/phase7_pipeline_overview.png)
+![Dashboard Screenshot](./docs/visualizations/phase2_data_distribution.png)
+![Dashboard Screenshot](./docs/visualizations/phase3_feature_engineering.png)
+![Dashboard Screenshot](./docs/visualizations/phase4_training_progress.png)
+![Dashboard Screenshot](./docs/visualizations/phase5_hyperparameter_tuning.png)
+![Dashboard Screenshot](./docs/visualizations/phase6_prediction_results.png)
+![Dashboard Screenshot](./docs/visualizations/phase7_model_performance.png)
+![Dashboard Screenshot](./docs/visualizations/phase8_pipeline_overview.png)
 
 
 ## Key Features
